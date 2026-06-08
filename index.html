@@ -7,19 +7,25 @@
   <title>Светлана Подольская — сайты, боты и автоматизация с ИИ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <header class="header">
     <div class="container header__inner">
-      <a href="#" class="logo">Светлана Подольская</a>
+      <a href="#" class="logo">
+        <span class="logo__name">Светлана Подольская</span>
+        <span class="logo__role">Digital-разработка с ИИ</span>
+      </a>
       <nav class="nav">
-        <a href="#about" class="nav__link">Обо мне</a>
+        <a href="#hero" class="nav__link">Главная</a>
         <a href="#services" class="nav__link">Услуги</a>
-        <a href="#projects" class="nav__link">Проекты</a>
-        <a href="#contact" class="nav__link nav__link--cta">Консультация</a>
+        <a href="#projects" class="nav__link">Кейсы</a>
+        <a href="#bots" class="nav__link">Боты</a>
+        <a href="#about" class="nav__link">Обо мне</a>
+        <a href="#contact" class="nav__link">Контакты</a>
+        <a href="https://t.me/managerfilm_bot" class="nav__link nav__link--cta" target="_blank" rel="noopener">Оставить заявку</a>
       </nav>
       <button class="burger" aria-label="Открыть меню" aria-expanded="false">
         <span></span>
@@ -32,29 +38,403 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero">
+    <section id="hero" class="hero">
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
       <div class="container hero__inner">
         <div class="hero__content">
-          <p class="hero__badge">Digital-разработка с ИИ</p>
+          <p class="hero__badge">Сайты · боты · автоматизация · ИИ</p>
           <h1 class="hero__title">
-            Сайты, боты и автоматизация —<br>
-            <span class="hero__accent">быстро, понятно, под вашу задачу</span>
+            Превращаю ваши идеи в <span class="gradient-text">digital-инструменты</span>,
+            которые работают на результат
           </h1>
           <p class="hero__text">
             Я — <strong>Подольская Светлана</strong>, выпускник школы Нейросетей и СММ Ксении Барановой.
-            Создаю digital-проекты, которые помогают бизнесу и экспертам работать онлайн без лишней сложности.
+            Создаю сайты, ботов и автоматизации, которые помогают бизнесу и экспертам
+            запускать проекты без лишней сложности.
+          </p>
+          <p class="hero__sub">
+            Вместо хаоса с технологиями — <strong>понятная система</strong>.
+            Вместо шаблонов — <strong>решение под вашу задачу</strong>.
+            Вместо рутины — <strong>боты и ИИ</strong>.
           </p>
           <div class="hero__actions">
-            <a href="#contact" class="btn btn--primary">Записаться на консультацию</a>
-            <a href="#projects" class="btn btn--ghost">Смотреть проекты</a>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Оставить заявку</a>
+            <a href="#services" class="btn btn--ghost">Смотреть услуги</a>
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__num">3+</span>
+              <span class="stat__label">реализованных проекта</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">ИИ</span>
+              <span class="stat__label">в каждом решении</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">24 ч</span>
+              <span class="stat__label">ответ на заявку</span>
+            </div>
           </div>
         </div>
         <div class="hero__visual" aria-hidden="true">
-          <div class="hero__card">
-            <div class="hero__card-icon">✦</div>
-            <p class="hero__card-title">ИИ + опыт</p>
-            <p class="hero__card-text">Современные инструменты и внимание к деталям — чтобы результат работал, а не просто «был»</p>
+          <div class="ai-card">
+            <div class="ai-card__header">
+              <span class="ai-card__dot"></span>
+              <span class="ai-card__status">ai.core · online</span>
+              <span class="ai-card__version">neural · v3.1</span>
+            </div>
+            <div class="ai-card__grid">
+              <div class="ai-chip">
+                <span class="ai-chip__label">Сайты</span>
+                <span class="ai-chip__value">лендинги</span>
+              </div>
+              <div class="ai-chip">
+                <span class="ai-chip__label">Telegram-бот</span>
+                <span class="ai-chip__value">автоматизация</span>
+              </div>
+              <div class="ai-chip">
+                <span class="ai-chip__label">Интеграция ИИ</span>
+                <span class="ai-chip__value">умные ответы</span>
+              </div>
+              <div class="ai-chip">
+                <span class="ai-chip__label">UX / логика</span>
+                <span class="ai-chip__value">+ конверсия</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="container">
+        <ul class="trust-bar">
+          <li class="trust-bar__item">Бесплатная консультация</li>
+          <li class="trust-bar__item">Старт в течение 24 часов</li>
+          <li class="trust-bar__item">Под вашу нишу и задачу</li>
+          <li class="trust-bar__item">Готовый результат, не «черновик»</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Services overview -->
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">Чем могу помочь</span>
+          <h2 class="section__title">Беру задачу — превращаю в работающий инструмент</h2>
+          <p class="section__subtitle">
+            Беру вашу идею, нишу или бизнес-задачу — и превращаю её в готовое решение:
+            от сайта до бота, от логики до интеграции ИИ.
+          </p>
+        </div>
+        <div class="services__grid">
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3 class="service-card__title">Создание сайтов</h3>
+            <p class="service-card__text">
+              Лендинги, визитки и каталоги для экспертов, магазинов и сервисов.
+              Адаптивная вёрстка, понятная структура, акцент на доверии и заявках.
+            </p>
+            <a href="#catalog" class="service-card__link">Подробнее →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>
+            </div>
+            <h3 class="service-card__title">Разработка ботов</h3>
+            <p class="service-card__text">
+              Telegram-боты для записи, консультаций, продаж и автоматических ответов.
+              Настраиваю логику так, чтобы бот работал как помощник, а не скрипт.
+            </p>
+            <a href="#bots" class="service-card__link">Подробнее →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h2a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5h-4a5 5 0 0 0-5 5H4a7 7 0 0 1 7-7h2V9.4A4 4 0 0 1 12 2z"/></svg>
+            </div>
+            <h3 class="service-card__title">Интеграция ИИ</h3>
+            <p class="service-card__text">
+              Встраиваю нейросети в ваши процессы: умные ответы, генерация контента,
+              автоматизация рутины — там, где это реально экономит время.
+            </p>
+            <a href="#catalog" class="service-card__link">Подробнее →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </div>
+            <h3 class="service-card__title">Интерфейсы и логика</h3>
+            <p class="service-card__text">
+              Продумываю пользовательский путь, структуру экранов и сценарии —
+              чтобы проект был удобным и для вас, и для ваших клиентов.
+            </p>
+            <a href="#catalog" class="service-card__link">Подробнее →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="service-card__title">Консультации</h3>
+            <p class="service-card__text">
+              Разбираю ваш проект, показываю варианты решения и даю план действий.
+              Честно скажу, что подойдёт именно вам — без навязанных услуг.
+            </p>
+            <a href="#contact" class="service-card__link">Подробнее →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="service-card__title">Сопровождение</h3>
+            <p class="service-card__text">
+              Помогаю запустить проект, внести правки и разобраться,
+              как пользоваться готовым инструментом самостоятельно.
+            </p>
+            <a href="#process" class="service-card__link">Подробнее →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audience -->
+    <section class="section audience">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">Для кого</span>
+          <h2 class="section__title">Для кого мои услуги</h2>
+        </div>
+        <div class="audience__grid">
+          <article class="audience-card">
+            <h3 class="audience-card__title">Эксперты</h3>
+            <p class="audience-card__text">
+              Если вам нужен сайт-визитка, бот для записи или автоматизация консультаций —
+              чтобы клиенты находили вас и оставляли заявки.
+            </p>
+          </article>
+          <article class="audience-card">
+            <h3 class="audience-card__title">Предприниматели</h3>
+            <p class="audience-card__text">
+              Если нужно быстро запустить онлайн-витрину, каталог или бота для продаж
+              и не тратить месяцы на разработку.
+            </p>
+          </article>
+          <article class="audience-card">
+            <h3 class="audience-card__title">Малый бизнес</h3>
+            <p class="audience-card__text">
+              Если хотите автоматизировать рутину: ответы клиентам, приём заявок,
+              учёт — через ботов и умные инструменты.
+            </p>
+          </article>
+          <article class="audience-card">
+            <h3 class="audience-card__title">Начинающие в digital</h3>
+            <p class="audience-card__text">
+              Если есть идея, но непонятно, с чего начать — помогу собрать всё
+              в понятный план и реализовать по шагам.
+            </p>
+          </article>
+        </div>
+        <p class="audience__cta-text">
+          Если у вас есть задача, но вы не знаете, как превратить её в сайт, бота или автоматизацию — я помогу собрать всё в понятную систему.
+        </p>
+        <div class="section__cta-center">
+          <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Обсудить мою задачу</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section id="catalog" class="section catalog">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">Каталог услуг</span>
+          <h2 class="section__title">Выберите формат под вашу задачу</h2>
+          <p class="section__subtitle">
+            Каждая услуга — конкретный результат, который можно применить сразу. Не теория, а готовый инструмент.
+          </p>
+        </div>
+        <div class="catalog__grid">
+          <article class="catalog-card">
+            <span class="catalog-card__tag">Сайты</span>
+            <h3 class="catalog-card__title">Сайт-визитка / лендинг</h3>
+            <p class="catalog-card__text">
+              Одностраничный сайт с услугами, портфолио и формой заявки — чтобы клиенты находили вас и записывались.
+            </p>
+            <ul class="catalog-card__list">
+              <li>Адаптивная вёрстка</li>
+              <li>Структура под конверсию</li>
+              <li>Готов к публикации</li>
+            </ul>
+            <p class="catalog-card__result"><strong>Результат:</strong> Рабочий сайт, который можно показывать клиентам.</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Заказать</a>
+          </article>
+          <article class="catalog-card catalog-card--hit">
+            <span class="catalog-card__badge">Популярно</span>
+            <span class="catalog-card__tag">Боты</span>
+            <h3 class="catalog-card__title">Telegram-бот под ключ</h3>
+            <p class="catalog-card__text">
+              Бот для записи, консультаций, приёма заявок или автоматических ответов — настроенный под вашу логику.
+            </p>
+            <ul class="catalog-card__list">
+              <li>Сценарии и кнопки</li>
+              <li>Уведомления и заявки</li>
+              <li>Инструкция по использованию</li>
+            </ul>
+            <p class="catalog-card__result"><strong>Результат:</strong> Бот, который работает как ваш цифровой помощник.</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Создать бота</a>
+          </article>
+          <article class="catalog-card">
+            <span class="catalog-card__tag">Сайты</span>
+            <h3 class="catalog-card__title">Сайт-каталог / магазин</h3>
+            <p class="catalog-card__text">
+              Многостраничный сайт с каталогом товаров, фильтрами и контактами — для магазинов и сервисов.
+            </p>
+            <ul class="catalog-card__list">
+              <li>Категории и карточки товаров</li>
+              <li>Удобная навигация</li>
+              <li>Форма связи / заказа</li>
+            </ul>
+            <p class="catalog-card__result"><strong>Результат:</strong> Онлайн-витрина, через которую клиенты находят и заказывают.</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Заказать</a>
+          </article>
+          <article class="catalog-card">
+            <span class="catalog-card__tag">ИИ</span>
+            <h3 class="catalog-card__title">Интеграция ИИ в проект</h3>
+            <p class="catalog-card__text">
+              Умные ответы, генерация контента, автоматизация рутины — нейросети там, где они реально помогают.
+            </p>
+            <ul class="catalog-card__list">
+              <li>Анализ задачи</li>
+              <li>Настройка под вашу нишу</li>
+              <li>Тестирование и запуск</li>
+            </ul>
+            <p class="catalog-card__result"><strong>Результат:</strong> ИИ-функции, встроенные в ваш рабочий процесс.</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Обсудить</a>
+          </article>
+          <article class="catalog-card catalog-card--hit">
+            <span class="catalog-card__badge">Популярно</span>
+            <span class="catalog-card__tag">Консультации</span>
+            <h3 class="catalog-card__title">Консультация по digital-проекту</h3>
+            <p class="catalog-card__text">
+              Разбираю вашу задачу, показываю варианты и даю план — за одну сессию.
+            </p>
+            <ul class="catalog-card__list">
+              <li>Анализ задачи</li>
+              <li>Рекомендации по инструментам</li>
+              <li>План действий</li>
+            </ul>
+            <p class="catalog-card__result"><strong>Результат:</strong> Вы уходите с понятным планом, что делать дальше.</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Записаться</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bots -->
+    <section id="bots" class="section bots">
+      <div class="container">
+        <div class="bots__inner">
+          <div class="bots__content">
+            <span class="section__label">Telegram-боты</span>
+            <h2 class="section__title">Боты для вашего бизнеса и сервиса</h2>
+            <p class="bots__text">
+              Создаю ботов, которые принимают заявки, отвечают клиентам, записывают на консультации
+              и автоматизируют рутинные процессы — без сложных настроек с вашей стороны.
+            </p>
+            <h3 class="bots__subtitle">Примеры ботов</h3>
+            <ul class="bots__list">
+              <li>Бот для записи на консультацию</li>
+              <li>Бот для приёма заявок</li>
+              <li>Бот с автоответами и FAQ</li>
+              <li>Бот для продаж и каталога</li>
+              <li>Бот-уведомления для команды</li>
+            </ul>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Хочу бота</a>
+          </div>
+          <div class="bots__card">
+            <h3 class="bots__card-title">Что входит</h3>
+            <ul class="bots__includes">
+              <li>Анализ задачи и сценариев</li>
+              <li>Логика и структура бота</li>
+              <li>Настройка кнопок и ответов</li>
+              <li>Тестирование</li>
+              <li>Инструкция по использованию</li>
+              <li>Поддержка при запуске</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="section process">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">Как проходит работа</span>
+          <h2 class="section__title">Понятный путь от заявки до результата</h2>
+        </div>
+        <div class="process__grid">
+          <article class="process-step">
+            <span class="process-step__num">01</span>
+            <h3 class="process-step__title">Вы оставляете заявку</h3>
+            <p class="process-step__text">Кратко описываете задачу, нишу и желаемый результат — в Telegram или на почту.</p>
+          </article>
+          <article class="process-step">
+            <span class="process-step__num">02</span>
+            <h3 class="process-step__title">Мы уточняем детали</h3>
+            <p class="process-step__text">Я задаю важные вопросы, чтобы понять вашу аудиторию, цель и формат решения.</p>
+          </article>
+          <article class="process-step">
+            <span class="process-step__num">03</span>
+            <h3 class="process-step__title">Я собираю решение</h3>
+            <p class="process-step__text">Создаю сайт, бота или автоматизацию под вашу задачу — с промежуточными согласованиями.</p>
+          </article>
+          <article class="process-step">
+            <span class="process-step__num">04</span>
+            <h3 class="process-step__title">Вы получаете результат</h3>
+            <p class="process-step__text">Передаю готовый инструмент, объясняю, как им пользоваться, и вношу правки при необходимости.</p>
+          </article>
+          <article class="process-step">
+            <span class="process-step__num">05</span>
+            <h3 class="process-step__title">Внедряете и используете</h3>
+            <p class="process-step__text">Получаете инструмент, который помогает принимать заявки, экономить время и работать онлайн.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="section advantages">
+      <div class="container">
+        <div class="section__header section__header--center">
+          <span class="section__label">Преимущества</span>
+          <h2 class="section__title">Почему со мной удобно работать</h2>
+        </div>
+        <div class="advantages__grid">
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">ИИ + практика</h3>
+            <p class="advantage-card__text">Использую нейросети не ради моды, а как инструмент для ускорения и улучшения результата.</p>
+          </article>
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">Готовый результат</h3>
+            <p class="advantage-card__text">Вы получаете не просто идеи, а работающий сайт, бота или систему, которую можно применять сразу.</p>
+          </article>
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">Понятная структура</h3>
+            <p class="advantage-card__text">Даже сложные задачи раскладываю на простые шаги — вы всегда в курсе, что происходит.</p>
+          </article>
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">Индивидуальный подход</h3>
+            <p class="advantage-card__text">Каждое решение создаётся под вашу нишу, аудиторию и конкретную бизнес-задачу.</p>
+          </article>
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">Экономия времени</h3>
+            <p class="advantage-card__text">Вам не нужно разбираться в коде и настройках — я беру техническую часть на себя.</p>
+          </article>
+          <article class="advantage-card">
+            <h3 class="advantage-card__title">Честная консультация</h3>
+            <p class="advantage-card__text">Скажу прямо, что подойдёт вам, а что нет — без навязывания лишних услуг.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -62,136 +442,30 @@
     <!-- About -->
     <section id="about" class="section about">
       <div class="container">
-        <div class="section__header">
-          <span class="section__label">Обо мне</span>
-          <h2 class="section__title">Помогаю запускать digital-инструменты без стресса</h2>
-        </div>
-        <div class="about__grid">
-          <div class="about__text">
-            <p>
-              Многие эксперты и предприниматели знают, <em>что</em> им нужно — сайт, бот или автоматизация —
-              но не всегда понимают, <em>с чего начать</em> и как не потерять время на переделки.
+        <div class="about__inner">
+          <div class="about__content">
+            <span class="section__label">Обо мне</span>
+            <h2 class="section__title">Подольская Светлана</h2>
+            <p class="about__role">Digital-разработчик, эксперт по сайтам, ботам и ИИ-интеграциям</p>
+            <p class="about__text">
+              Я помогаю экспертам и предпринимателям запускать сайты, ботов и автоматизации.
+              Моя задача — не просто «сделать красиво», а превратить вашу идею в инструмент,
+              который принимает заявки, экономит время и работает на результат.
             </p>
-            <p>
-              Я беру на себя техническую часть: от структуры и логики до готового решения.
-              Объясняю простым языком, держу в курсе на каждом этапе и делаю так, чтобы вы могли
-              пользоваться результатом самостоятельно.
+            <p class="about__text">
+              Выпускник школы Нейросетей и СММ Ксении Барановой. Соединяю знания в нейросетях,
+              маркетинге и digital-разработке, чтобы вы могли быстрее выходить онлайн
+              и уверенно работать со своими клиентами.
             </p>
-            <p>
-              Обучение в школе Ксении Барановой дало мне сильную базу в нейросетях, маркетинге
-              и digital-инструментах — я соединяю это с практикой разработки реальных проектов.
-            </p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Связаться со мной</a>
           </div>
-          <ul class="about__facts">
-            <li class="about__fact">
-              <span class="about__fact-num">01</span>
-              <div>
-                <strong>Понятный процесс</strong>
-                <p>Обсуждаем задачу, согласовываем план — вы всегда знаете, что происходит</p>
-              </div>
-            </li>
-            <li class="about__fact">
-              <span class="about__fact-num">02</span>
-              <div>
-                <strong>Фокус на результате</strong>
-                <p>Не «красиво ради красоты», а инструмент, который решает вашу задачу</p>
-              </div>
-            </li>
-            <li class="about__fact">
-              <span class="about__fact-num">03</span>
-              <div>
-                <strong>ИИ как помощник</strong>
-                <p>Использую нейросети там, где это ускоряет работу и улучшает качество</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="section services">
-      <div class="container">
-        <div class="section__header section__header--center">
-          <span class="section__label">Чем помогаю</span>
-          <h2 class="section__title">Запускаю сайты, ботов и автоматизации для бизнеса и экспертов</h2>
-          <p class="section__subtitle">
-            Каждый проект начинается с вашей цели — не с шаблонного решения
-          </p>
-        </div>
-        <div class="services__grid">
-          <article class="service-card">
-            <div class="service-card__icon">🌐</div>
-            <h3 class="service-card__title">Создание сайтов</h3>
-            <p class="service-card__text">
-              Лендинги, визитки и многостраничные сайты для экспертов, магазинов и сервисов.
-              Адаптивная вёрстка, понятная структура, акцент на доверии и конверсии.
-            </p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon">🤖</div>
-            <h3 class="service-card__title">Разработка ботов</h3>
-            <p class="service-card__text">
-              Telegram- и VK-боты для записи, консультаций, продаж и автоматических ответов.
-              Настраиваю логику так, чтобы бот работал как помощник, а не просто скрипт.
-            </p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon">⚡</div>
-            <h3 class="service-card__title">Интеграция ИИ</h3>
-            <p class="service-card__text">
-              Встраиваю нейросети в ваши процессы: генерация контента, умные ответы,
-              автоматизация рутины. Там, где это действительно экономит время.
-            </p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon">🎯</div>
-            <h3 class="service-card__title">Интерфейсы и логика</h3>
-            <p class="service-card__text">
-              Продумываю пользовательский путь, структуру экранов и сценарии взаимодействия —
-              чтобы проект был удобным и для вас, и для ваших клиентов.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="section skills">
-      <div class="container">
-        <div class="skills__inner">
-          <div class="skills__content">
-            <span class="section__label">Навыки</span>
-            <h2 class="section__title">Что входит в мою работу</h2>
-            <p class="skills__intro">
-              Комплексный подход: от идеи до работающего инструмента, который вы сможете использовать и развивать.
-            </p>
-          </div>
-          <ul class="skills__list">
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Создание сайтов — лендинги, визитки, каталоги
-            </li>
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Разработка ботов (Telegram / VK)
-            </li>
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Интеграция ИИ в проекты и процессы
-            </li>
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Проектирование интерфейсов и логики
-            </li>
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Адаптивная вёрстка и UX-проработка
-            </li>
-            <li class="skills__item">
-              <span class="skills__check">✓</span>
-              Сопровождение и консультации по запуску
-            </li>
+          <ul class="about__tags">
+            <li>Выпускник школы Ксении Барановой</li>
+            <li>Создаю сайты и лендинги</li>
+            <li>Разрабатываю Telegram-ботов</li>
+            <li>Интегрирую ИИ в проекты</li>
+            <li>Проектирую UX и логику</li>
+            <li>Работаю с экспертами и бизнесом</li>
           </ul>
         </div>
       </div>
@@ -201,74 +475,109 @@
     <section id="projects" class="section projects">
       <div class="container">
         <div class="section__header">
-          <span class="section__label">Портфолио</span>
-          <h2 class="section__title">Реализованные проекты</h2>
-          <p class="section__subtitle">
-            Примеры работ, где технология служит конкретной бизнес-задаче
-          </p>
+          <span class="section__label">Кейсы</span>
+          <h2 class="section__title">Примеры работ</h2>
+          <p class="section__subtitle">Реальные проекты, где технология решает конкретную бизнес-задачу</p>
         </div>
         <div class="projects__grid">
-
           <article class="project-card">
-            <div class="project-card__tag">Сайт</div>
+            <span class="project-card__num">#01</span>
+            <span class="project-card__tag">Сайт</span>
             <h3 class="project-card__title">Сайт для имиджмейкера</h3>
             <p class="project-card__text">
-              Разработала персональный сайт для специалиста по имиджу и стилю.
-              Структура выстроена вокруг услуг и кейсов: посетитель сразу понимает, чем эксперт может помочь,
-              и легко записывается на консультацию. Акцент на визуальной подаче и доверии.
+              Персональный сайт для специалиста по имиджу и стилю. Структура вокруг услуг и кейсов —
+              посетитель сразу понимает ценность и легко записывается на консультацию.
             </p>
             <ul class="project-card__features">
-              <li>Понятная навигация по услугам</li>
-              <li>Блок с отзывами и портфолио</li>
-              <li>Форма записи на консультацию</li>
+              <li>Навигация по услугам</li>
+              <li>Портфолио и отзывы</li>
+              <li>Форма записи</li>
             </ul>
           </article>
-
           <article class="project-card">
-            <div class="project-card__tag">Сайт</div>
-            <h3 class="project-card__title">Сайт для магазина профессиональной косметики</h3>
+            <span class="project-card__num">#02</span>
+            <span class="project-card__tag">Сайт</span>
+            <h3 class="project-card__title">Сайт для магазина косметики</h3>
             <p class="project-card__text">
-              Создала интернет-витрину для магазина профессиональной косметики.
-              Каталог с удобной фильтрацией, карточки товаров с описаниями и акцентом на экспертность бренда.
-              Сайт помогает клиентам быстро найти нужный продукт и связаться с продавцом.
+              Интернет-витрина для магазина профессиональной косметики. Каталог с фильтрацией,
+              карточки товаров и акцент на экспертность бренда.
             </p>
             <ul class="project-card__features">
-              <li>Каталог с категориями и фильтрами</li>
-              <li>Карточки товаров с подробным описанием</li>
-              <li>Контакты и способы заказа</li>
+              <li>Каталог с категориями</li>
+              <li>Карточки товаров</li>
+              <li>Контакты и заказ</li>
             </ul>
           </article>
-
           <article class="project-card">
-            <div class="project-card__tag">Приложение</div>
-            <h3 class="project-card__title">Мобильное приложение для семейного бюджета</h3>
+            <span class="project-card__num">#03</span>
+            <span class="project-card__tag">Приложение</span>
+            <h3 class="project-card__title">Приложение для семейного бюджета</h3>
             <p class="project-card__text">
-              Разработала приложение для учёта семейных доходов и расходов.
-              Простой интерфейс, категории трат, наглядная статистика — инструмент,
-              который помогает семье видеть полную картину финансов и принимать решения осознанно.
+              Мобильное приложение для учёта доходов и расходов. Простой интерфейс,
+              категории трат и наглядная статистика для всей семьи.
             </p>
             <ul class="project-card__features">
-              <li>Учёт доходов и расходов по категориям</li>
-              <li>Наглядная статистика и отчёты</li>
-              <li>Интуитивный интерфейс для всей семьи</li>
+              <li>Учёт по категориям</li>
+              <li>Статистика и отчёты</li>
+              <li>Интуитивный интерфейс</li>
             </ul>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section cta">
+    <!-- FAQ -->
+    <section class="section faq">
       <div class="container">
-        <div class="cta__box">
-          <h2 class="cta__title">Не уверены, с чего начать?</h2>
-          <p class="cta__text">
-            На бесплатной консультации разберём вашу задачу, предложу варианты решения
-            и честно скажу, что подойдёт именно вам. Без давления и навязанных услуг —
-            только конкретика и план действий.
-          </p>
-          <a href="#contact" class="btn btn--primary btn--large">Записаться на консультацию</a>
+        <div class="section__header section__header--center">
+          <span class="section__label">FAQ</span>
+          <h2 class="section__title">Частые вопросы</h2>
+        </div>
+        <div class="faq__list">
+          <details class="faq-item">
+            <summary class="faq-item__question">С чего начать, если я не понимаю, что мне нужно?</summary>
+            <p class="faq-item__answer">Напишите мне в Telegram — на бесплатной консультации разберём задачу и определим, нужен ли вам сайт, бот или что-то другое.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Можно ли заказать только консультацию?</summary>
+            <p class="faq-item__answer">Да. Консультация бесплатная — вы получите план действий и рекомендации, даже если решите делать проект самостоятельно.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Сколько времени занимает разработка?</summary>
+            <p class="faq-item__answer">Зависит от задачи: лендинг — от нескольких дней, бот — от 3–7 дней, сложные проекты обсуждаем индивидуально. Сроки фиксируем до старта.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Вы работаете с разными нишами?</summary>
+            <p class="faq-item__answer">Да — эксперты, магазины, сервисы, малый бизнес. Главное — понять вашу задачу и аудиторию, а не нишу ради ниши.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Нужны ли мне технические знания?</summary>
+            <p class="faq-item__answer">Нет. Я объясняю всё простым языком и передаю готовый инструмент с инструкцией — вы сможете пользоваться им самостоятельно.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section stats-bar">
+      <div class="container">
+        <div class="stats-bar__grid">
+          <div class="stats-bar__item">
+            <span class="stats-bar__num">3+</span>
+            <span class="stats-bar__label">реализованных проекта</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num">4</span>
+            <span class="stats-bar__label">направления работы</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num">ИИ</span>
+            <span class="stats-bar__label">в каждом решении</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num">24 ч</span>
+            <span class="stats-bar__label">ответ на заявку</span>
+          </div>
         </div>
       </div>
     </section>
@@ -276,34 +585,27 @@
     <!-- Contact -->
     <section id="contact" class="section contact">
       <div class="container">
-        <div class="contact__grid">
+        <div class="contact__inner">
           <div class="contact__info">
-            <span class="section__label">Контакты</span>
-            <h2 class="section__title">Давайте обсудим ваш проект</h2>
+            <span class="section__label">Заявка</span>
+            <h2 class="section__title">Оставьте заявку — и я помогу подобрать решение</h2>
             <p class="contact__text">
-              Напишите мне удобным способом — отвечу в течение рабочего дня.
-              Расскажите кратко о задаче, и мы договоримся о времени для разговора.
+              Опишите вашу задачу в Telegram или на почту — свяжусь с вами для уточнения деталей.
+              Консультация бесплатная, без давления и навязанных услуг.
             </p>
             <ul class="contact__list">
               <li class="contact__item">
                 <span class="contact__icon">✈️</span>
                 <div>
                   <span class="contact__label">Telegram</span>
-                  <a href="https://t.me/your_username" class="contact__link" target="_blank" rel="noopener">@your_username</a>
+                  <a href="https://t.me/managerfilm_bot" class="contact__link" target="_blank" rel="noopener">@managerfilm_bot</a>
                 </div>
               </li>
               <li class="contact__item">
                 <span class="contact__icon">✉️</span>
                 <div>
                   <span class="contact__label">Электронная почта</span>
-                  <a href="mailto:sveta@example.com" class="contact__link">sveta@example.com</a>
-                </div>
-              </li>
-              <li class="contact__item">
-                <span class="contact__icon">💬</span>
-                <div>
-                  <span class="contact__label">ВКонтакте</span>
-                  <a href="https://vk.com/your_page" class="contact__link" target="_blank" rel="noopener">vk.com/your_page</a>
+                  <a href="mailto:svpodols@mail.ru" class="contact__link">svpodols@mail.ru</a>
                 </div>
               </li>
             </ul>
@@ -316,9 +618,8 @@
               <li>Вместе определяем формат решения</li>
               <li>Вы получаете план и ориентиры по срокам</li>
             </ol>
-            <p class="contact__note">
-              Консультация бесплатная · 30–40 минут · онлайн
-            </p>
+            <p class="contact__note">Консультация бесплатная · 30–40 минут · онлайн</p>
+            <a href="https://t.me/managerfilm_bot" class="btn btn--primary btn--full" target="_blank" rel="noopener">Написать в Telegram</a>
           </div>
         </div>
       </div>
@@ -328,8 +629,27 @@
 
   <footer class="footer">
     <div class="container footer__inner">
+      <div class="footer__brand">
+        <p class="footer__name">Светлана Подольская</p>
+        <p class="footer__desc">Digital-разработка с ИИ: сайты, боты, автоматизация. Помогаю экспертам и бизнесу запускать онлайн-инструменты.</p>
+      </div>
+      <nav class="footer__nav">
+        <p class="footer__nav-title">Навигация</p>
+        <a href="#hero">Главная</a>
+        <a href="#services">Услуги</a>
+        <a href="#projects">Кейсы</a>
+        <a href="#about">Обо мне</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="footer__contacts">
+        <p class="footer__nav-title">Контакты</p>
+        <a href="https://t.me/managerfilm_bot" target="_blank" rel="noopener">Telegram: @managerfilm_bot</a>
+        <a href="mailto:svpodols@mail.ru">Email: svpodols@mail.ru</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
       <p class="footer__copy">© 2025 Подольская Светлана. Все права защищены.</p>
-      <a href="#contact" class="footer__link">Связаться</a>
+      <p class="footer__made">Сделано с заботой и нейросетями.</p>
     </div>
   </footer>
 
