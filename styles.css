@@ -1,25 +1,25 @@
-/* ===== Variables — dark AI theme (по аналогии с expert-ai-alchemy) ===== */
+/* ===== Variables — светлая AI-тема ===== */
 :root {
-  --color-bg: #0a0a0f;
-  --color-bg-alt: #111118;
-  --color-surface: rgba(255, 255, 255, 0.04);
-  --color-surface-hover: rgba(255, 255, 255, 0.07);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-accent: rgba(139, 92, 246, 0.3);
+  --color-bg: #f7f6fc;
+  --color-bg-alt: #efedf8;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f3ff;
+  --color-border: #e4e0f0;
+  --color-border-accent: rgba(139, 92, 246, 0.35);
 
-  --color-text: #f4f4f5;
-  --color-text-muted: #a1a1aa;
-  --color-text-dim: #71717a;
+  --color-text: #1e1b2e;
+  --color-text-muted: #5c5670;
+  --color-text-dim: #8b849c;
 
-  --color-accent: #8b5cf6;
-  --color-accent-light: #a78bfa;
-  --color-accent-glow: rgba(139, 92, 246, 0.4);
-  --color-cyan: #22d3ee;
-  --color-cyan-glow: rgba(34, 211, 238, 0.3);
+  --color-accent: #7c3aed;
+  --color-accent-light: #8b5cf6;
+  --color-accent-glow: rgba(124, 58, 237, 0.2);
+  --color-cyan: #0891b2;
+  --color-cyan-glow: rgba(8, 145, 178, 0.12);
 
   --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #22d3ee 100%);
-  --gradient-text: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 40%, #22d3ee 100%);
-  --gradient-surface: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(34, 211, 238, 0.05) 100%);
+  --gradient-text: linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #0891b2 100%);
+  --gradient-surface: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(34, 211, 238, 0.04) 100%);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -28,8 +28,8 @@
   --radius-lg: 20px;
   --radius-xl: 24px;
 
-  --shadow-glow: 0 0 60px rgba(139, 92, 246, 0.15);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 8px 32px rgba(124, 58, 237, 0.1);
+  --shadow-card: 0 4px 20px rgba(30, 27, 46, 0.06);
 
   --transition: 0.25s ease;
   --header-h: 72px;
@@ -168,7 +168,7 @@ img {
 }
 
 .btn--ghost {
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-text);
   border-color: var(--color-border);
 }
@@ -176,7 +176,7 @@ img {
 .btn--ghost:hover {
   border-color: var(--color-accent);
   color: var(--color-accent-light);
-  background: var(--color-surface);
+  background: var(--color-surface-hover);
 }
 
 .btn--outline {
@@ -208,9 +208,10 @@ img {
   right: 0;
   z-index: 100;
   height: var(--header-h);
-  background: rgba(10, 10, 15, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 12px rgba(30, 27, 46, 0.04);
 }
 
 .header__inner {
@@ -309,7 +310,7 @@ img {
   background: var(--color-accent-glow);
   top: -100px;
   right: -100px;
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
 .hero__glow--2 {
@@ -318,7 +319,7 @@ img {
   background: var(--color-cyan-glow);
   bottom: 0;
   left: -150px;
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .hero__inner {
@@ -333,7 +334,7 @@ img {
 .hero__badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(139, 92, 246, 0.1);
   border: 1px solid var(--color-border-accent);
   color: var(--color-accent-light);
   font-size: 0.8rem;
@@ -451,7 +452,7 @@ img {
 }
 
 .ai-chip {
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(139, 92, 246, 0.06);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 14px;
@@ -539,7 +540,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(139, 92, 246, 0.12);
+  background: rgba(139, 92, 246, 0.1);
   border-radius: var(--radius-sm);
   color: var(--color-accent-light);
   margin-bottom: 18px;
@@ -660,7 +661,7 @@ img {
   display: inline-block;
   align-self: flex-start;
   padding: 4px 12px;
-  background: rgba(139, 92, 246, 0.12);
+  background: rgba(139, 92, 246, 0.1);
   color: var(--color-accent-light);
   font-size: 0.7rem;
   font-weight: 600;
@@ -960,7 +961,7 @@ img {
 .project-card__num {
   font-size: 3rem;
   font-weight: 800;
-  color: rgba(139, 92, 246, 0.08);
+  color: rgba(139, 92, 246, 0.12);
   line-height: 1;
   margin-bottom: -12px;
   letter-spacing: -0.04em;
@@ -970,7 +971,7 @@ img {
   display: inline-block;
   align-self: flex-start;
   padding: 4px 12px;
-  background: rgba(139, 92, 246, 0.12);
+  background: rgba(139, 92, 246, 0.1);
   color: var(--color-accent-light);
   font-size: 0.7rem;
   font-weight: 600;
@@ -1322,11 +1323,11 @@ img {
   max-width: 480px;
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
   border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-xl);
   padding: 36px 32px;
-  box-shadow: var(--shadow-glow), 0 24px 64px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glow), 0 24px 64px rgba(30, 27, 46, 0.12);
   transform: translateY(16px);
   transition: transform var(--transition);
 }
@@ -1471,9 +1472,9 @@ img {
 }
 
 .form-message--error {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
 }
 
 .form-success {
@@ -1571,7 +1572,7 @@ button.btn {
     top: var(--header-h);
     left: 0;
     right: 0;
-    background: rgba(10, 10, 15, 0.97);
+    background: rgba(255, 255, 255, 0.98);
     flex-direction: column;
     align-items: stretch;
     padding: 20px 24px;

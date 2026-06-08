@@ -16,17 +16,7 @@
   const errorBlock = document.getElementById('form-error');
   const formBody = document.getElementById('form-body');
 
-  let iframe = document.getElementById('tg-frame');
-
-  function createIframe() {
-    iframe = document.createElement('iframe');
-    iframe.id = 'tg-frame';
-    iframe.name = 'tg-frame';
-    iframe.style.display = 'none';
-    iframe.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(iframe);
-    return iframe;
-  }
+  const SEND_URL = 'send-telegram.php';
 
   function openModal(service) {
     form.reset();
@@ -83,74 +73,33 @@
     successBlock.hidden = false;
   }
 
-  function buildMessage(data) {
-    const contactLine = data.contact_type === 'phone'
-      ? `📱 Телефон: ${data.phone}`
-      : `📧 Email: ${data.email}`;
-
-    const lines = [
-      '🆕 <b>Новая заявка с сайта</b>',
-      '',
-      `👤 <b>Имя:</b> ${escapeHtml(data.name)}`,
-      contactLine,
-    ];
-
-    if (data.service) {
-      lines.push(`🛠 <b>Услуга:</b> ${escapeHtml(data.service)}`);
-    }
-
-    if (data.message) {
-      lines.push(`💬 <b>Комментарий:</b> ${escapeHtml(data.message)}`);
-    }
-
-    lines.push('', '✅ Согласие на обработку персональных данных: да');
-
-    return lines.join('\n');
+  function isLocalFile() {
+    return window.location.protocol === 'file:';
   }
 
-  function escapeHtml(text) {
-    return String(text)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-
-  function sendToTelegram(text) {
-    const config = window.TG_CONFIG || {};
-
-    if (!config.botToken) {
-      throw new Error('Не настроен токен Telegram-бота. Проверьте файл config.js');
+  async function sendToTelegram(data) {
+    if (isLocalFile()) {
+      throw new Error(
+        'Сайт открыт с компьютера (file://). Загрузите папку на хостинг с PHP или откройте через локальный сервер — иначе заявка не отправится.'
+      );
     }
 
-    if (!config.chatId) {
-      throw new Error('Не настроен chat_id. Укажите его в файле config.js (узнать можно у @userinfobot)');
-    }
-
-    if (!iframe) createIframe();
-
-    const formEl = document.createElement('form');
-    formEl.method = 'POST';
-    formEl.action = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
-    formEl.target = 'tg-frame';
-    formEl.style.display = 'none';
-
-    const fields = {
-      chat_id: config.chatId,
-      text: text,
-      parse_mode: 'HTML',
-    };
-
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = value;
-      formEl.appendChild(input);
+    const response = await fetch(SEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
 
-    document.body.appendChild(formEl);
-    formEl.submit();
-    document.body.removeChild(formEl);
+    let result = {};
+    try {
+      result = await response.json();
+    } catch (e) {
+      throw new Error('Сервер не ответил. Убедитесь, что на хостинге включён PHP и файл send-telegram.php загружен.');
+    }
+
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || 'Не удалось отправить заявку. Попробуйте позже.');
+    }
   }
 
   document.querySelectorAll('.js-open-form').forEach((btn) => {
@@ -173,12 +122,13 @@
     }
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errorBlock.hidden = true;
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    data.consent = form.querySelector('input[name="consent"]').checked;
 
     if (!data.consent) {
       showError('Необходимо дать согласие на обработку персональных данных.');
@@ -199,16 +149,11 @@
     submitBtn.textContent = 'Отправка...';
 
     try {
-      const message = buildMessage(data);
-      sendToTelegram(message);
-
-      setTimeout(() => {
-        showSuccess();
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Отправить заявку';
-      }, 600);
+      await sendToTelegram(data);
+      showSuccess();
     } catch (err) {
       showError(err.message || 'Не удалось отправить заявку. Попробуйте позже.');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить заявку';
     }
