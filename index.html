@@ -25,7 +25,7 @@
         <a href="#bots" class="nav__link">Боты</a>
         <a href="#about" class="nav__link">Обо мне</a>
         <a href="#contact" class="nav__link">Контакты</a>
-        <a href="https://t.me/managerfilm_bot" class="nav__link nav__link--cta" target="_blank" rel="noopener">Оставить заявку</a>
+        <a href="#" class="nav__link nav__link--cta js-open-form">Оставить заявку</a>
       </nav>
       <button class="burger" aria-label="Открыть меню" aria-expanded="false">
         <span></span>
@@ -59,7 +59,7 @@
             Вместо рутины — <strong>боты и ИИ</strong>.
           </p>
           <div class="hero__actions">
-            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Оставить заявку</a>
+            <button type="button" class="btn btn--primary js-open-form">Оставить заявку</button>
             <a href="#services" class="btn btn--ghost">Смотреть услуги</a>
           </div>
           <div class="hero__stats">
@@ -98,8 +98,8 @@
                 <span class="ai-chip__value">умные ответы</span>
               </div>
               <div class="ai-chip">
-                <span class="ai-chip__label">UX / логика</span>
-                <span class="ai-chip__value">+ конверсия</span>
+                <span class="ai-chip__label">Автоматизация</span>
+                <span class="ai-chip__value">+ заявки</span>
               </div>
             </div>
           </div>
@@ -160,39 +160,6 @@
             </p>
             <a href="#catalog" class="service-card__link">Подробнее →</a>
           </article>
-          <article class="service-card">
-            <div class="service-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-            </div>
-            <h3 class="service-card__title">Интерфейсы и логика</h3>
-            <p class="service-card__text">
-              Продумываю пользовательский путь, структуру экранов и сценарии —
-              чтобы проект был удобным и для вас, и для ваших клиентов.
-            </p>
-            <a href="#catalog" class="service-card__link">Подробнее →</a>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3 class="service-card__title">Консультации</h3>
-            <p class="service-card__text">
-              Разбираю ваш проект, показываю варианты решения и даю план действий.
-              Честно скажу, что подойдёт именно вам — без навязанных услуг.
-            </p>
-            <a href="#contact" class="service-card__link">Подробнее →</a>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <h3 class="service-card__title">Сопровождение</h3>
-            <p class="service-card__text">
-              Помогаю запустить проект, внести правки и разобраться,
-              как пользоваться готовым инструментом самостоятельно.
-            </p>
-            <a href="#process" class="service-card__link">Подробнее →</a>
-          </article>
         </div>
       </div>
     </section>
@@ -238,7 +205,7 @@
           Если у вас есть задача, но вы не знаете, как превратить её в сайт, бота или автоматизацию — я помогу собрать всё в понятную систему.
         </p>
         <div class="section__cta-center">
-          <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Обсудить мою задачу</a>
+          <button type="button" class="btn btn--primary js-open-form">Обсудить мою задачу</button>
         </div>
       </div>
     </section>
@@ -266,7 +233,7 @@
               <li>Готов к публикации</li>
             </ul>
             <p class="catalog-card__result"><strong>Результат:</strong> Рабочий сайт, который можно показывать клиентам.</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Заказать</a>
+            <button type="button" class="btn btn--outline btn--sm js-open-form" data-service="Сайт-визитка / лендинг">Заказать</button>
           </article>
           <article class="catalog-card catalog-card--hit">
             <span class="catalog-card__badge">Популярно</span>
@@ -281,7 +248,7 @@
               <li>Инструкция по использованию</li>
             </ul>
             <p class="catalog-card__result"><strong>Результат:</strong> Бот, который работает как ваш цифровой помощник.</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Создать бота</a>
+            <button type="button" class="btn btn--outline btn--sm js-open-form" data-service="Telegram-бот под ключ">Создать бота</button>
           </article>
           <article class="catalog-card">
             <span class="catalog-card__tag">Сайты</span>
@@ -295,7 +262,7 @@
               <li>Форма связи / заказа</li>
             </ul>
             <p class="catalog-card__result"><strong>Результат:</strong> Онлайн-витрина, через которую клиенты находят и заказывают.</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Заказать</a>
+            <button type="button" class="btn btn--outline btn--sm js-open-form" data-service="Сайт-каталог / магазин">Заказать</button>
           </article>
           <article class="catalog-card">
             <span class="catalog-card__tag">ИИ</span>
@@ -309,22 +276,7 @@
               <li>Тестирование и запуск</li>
             </ul>
             <p class="catalog-card__result"><strong>Результат:</strong> ИИ-функции, встроенные в ваш рабочий процесс.</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Обсудить</a>
-          </article>
-          <article class="catalog-card catalog-card--hit">
-            <span class="catalog-card__badge">Популярно</span>
-            <span class="catalog-card__tag">Консультации</span>
-            <h3 class="catalog-card__title">Консультация по digital-проекту</h3>
-            <p class="catalog-card__text">
-              Разбираю вашу задачу, показываю варианты и даю план — за одну сессию.
-            </p>
-            <ul class="catalog-card__list">
-              <li>Анализ задачи</li>
-              <li>Рекомендации по инструментам</li>
-              <li>План действий</li>
-            </ul>
-            <p class="catalog-card__result"><strong>Результат:</strong> Вы уходите с понятным планом, что делать дальше.</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Записаться</a>
+            <button type="button" class="btn btn--outline btn--sm js-open-form" data-service="Интеграция ИИ в проект">Обсудить</button>
           </article>
         </div>
       </div>
@@ -349,7 +301,7 @@
               <li>Бот для продаж и каталога</li>
               <li>Бот-уведомления для команды</li>
             </ul>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Хочу бота</a>
+            <button type="button" class="btn btn--primary js-open-form" data-service="Telegram-бот под ключ">Хочу бота</button>
           </div>
           <div class="bots__card">
             <h3 class="bots__card-title">Что входит</h3>
@@ -457,7 +409,7 @@
               маркетинге и digital-разработке, чтобы вы могли быстрее выходить онлайн
               и уверенно работать со своими клиентами.
             </p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--primary" target="_blank" rel="noopener">Связаться со мной</a>
+            <button type="button" class="btn btn--primary js-open-form">Связаться со мной</button>
           </div>
           <ul class="about__tags">
             <li>Выпускник школы Ксении Барановой</li>
@@ -567,7 +519,7 @@
             <span class="stats-bar__label">реализованных проекта</span>
           </div>
           <div class="stats-bar__item">
-            <span class="stats-bar__num">4</span>
+            <span class="stats-bar__num">3</span>
             <span class="stats-bar__label">направления работы</span>
           </div>
           <div class="stats-bar__item">
@@ -619,7 +571,7 @@
               <li>Вы получаете план и ориентиры по срокам</li>
             </ol>
             <p class="contact__note">Консультация бесплатная · 30–40 минут · онлайн</p>
-            <a href="https://t.me/managerfilm_bot" class="btn btn--primary btn--full" target="_blank" rel="noopener">Написать в Telegram</a>
+            <button type="button" class="btn btn--primary btn--full js-open-form">Оставить заявку</button>
           </div>
         </div>
       </div>
@@ -653,6 +605,75 @@
     </div>
   </footer>
 
+  <!-- Modal: форма заявки -->
+  <div id="request-modal" class="modal" aria-hidden="true">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">×</button>
+
+      <div id="form-body">
+        <h2 id="modal-title" class="modal__title">Оставить заявку</h2>
+        <p class="modal__subtitle">Заполните форму — заявка придёт мне в Telegram</p>
+
+        <form id="request-form" class="request-form" novalidate>
+          <input type="hidden" id="request-service" name="service" value="">
+
+          <label class="form-field">
+            <span class="form-field__label">Ваше имя *</span>
+            <input type="text" id="request-name" name="name" class="form-field__input" placeholder="Как к вам обращаться" required>
+          </label>
+
+          <fieldset class="form-field form-field--radio">
+            <legend class="form-field__label">Как с вами связаться *</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="contact_type" value="phone" checked>
+                <span>Телефон</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="contact_type" value="email">
+                <span>Email</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="form-field" id="phone-group">
+            <span class="form-field__label">Телефон *</span>
+            <input type="tel" id="request-phone" name="phone" class="form-field__input" placeholder="+7 (999) 123-45-67">
+          </label>
+
+          <label class="form-field" id="email-group" hidden>
+            <span class="form-field__label">Email *</span>
+            <input type="email" id="request-email" name="email" class="form-field__input" placeholder="example@mail.ru">
+          </label>
+
+          <label class="form-field">
+            <span class="form-field__label">Комментарий</span>
+            <textarea id="request-message" name="message" class="form-field__input form-field__textarea" rows="3" placeholder="Кратко опишите задачу (необязательно)"></textarea>
+          </label>
+
+          <label class="form-checkbox">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Даю согласие на обработку моих персональных данных</span>
+          </label>
+
+          <p id="form-error" class="form-message form-message--error" hidden></p>
+
+          <button type="submit" id="request-submit" class="btn btn--primary btn--full">Отправить заявку</button>
+        </form>
+      </div>
+
+      <div id="form-success" class="form-success" hidden>
+        <div class="form-success__icon">✓</div>
+        <h3 class="form-success__title">Заявка отправлена!</h3>
+        <p class="form-success__text">Спасибо! Я свяжусь с вами в ближайшее время.</p>
+        <button type="button" class="btn btn--ghost btn--full" data-close-modal>Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="form.js"></script>
   <script>
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav');
