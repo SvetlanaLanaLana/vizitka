@@ -80,24 +80,31 @@
     return window.location.protocol === 'file:';
   }
 
-  function sendViaGoogleScript(url, data) {
+  function buildGoogleScriptParams(data, extra) {
+    const params = new URLSearchParams();
+    params.set('name', data.name || '');
+    params.set('contact_type', data.contact_type || 'phone');
+    params.set('phone', data.phone || '');
+    params.set('email', data.email || '');
+    params.set('service', data.service || '');
+    params.set('message', data.message || '');
+    params.set('consent', data.consent ? 'true' : 'false');
+    if (extra) {
+      Object.keys(extra).forEach((key) => params.set(key, extra[key]));
+    }
+    return params;
+  }
+
+  function sendViaGoogleScriptJsonp(url, data) {
     return new Promise((resolve, reject) => {
       const callbackName = 'gsCb_' + Date.now();
-      const params = new URLSearchParams();
-      params.set('name', data.name || '');
-      params.set('contact_type', data.contact_type || 'phone');
-      params.set('phone', data.phone || '');
-      params.set('email', data.email || '');
-      params.set('service', data.service || '');
-      params.set('message', data.message || '');
-      params.set('consent', data.consent ? 'true' : 'false');
-      params.set('callback', callbackName);
-
+      const params = buildGoogleScriptParams(data, { callback: callbackName });
       const script = document.createElement('script');
+
       const timer = setTimeout(() => {
         cleanup();
-        reject(new Error('Сервер не ответил. Обновите Google Script и form.js на GitHub.'));
-      }, 15000);
+        reject(new Error('JSONP timeout'));
+      }, 12000);
 
       function cleanup() {
         clearTimeout(timer);
@@ -116,12 +123,33 @@
 
       script.onerror = () => {
         cleanup();
-        reject(new Error('Ошибка связи с Google Script. Проверьте URL в form-config.js.'));
+        reject(new Error('JSONP error'));
       };
 
       script.src = url + (url.includes('?') ? '&' : '?') + params.toString();
       document.body.appendChild(script);
     });
+  }
+
+  async function sendViaGoogleScriptGet(url, data) {
+    const params = buildGoogleScriptParams(data);
+    const response = await fetch(url + '?' + params.toString(), {
+      method: 'GET',
+      redirect: 'follow',
+    });
+    const text = await response.text();
+    const result = JSON.parse(text);
+    if (!result.ok) {
+      throw new Error(result.error || 'Не удалось отправить заявку в Telegram.');
+    }
+  }
+
+  async function sendViaGoogleScript(url, data) {
+    try {
+      await sendViaGoogleScriptJsonp(url, data);
+    } catch (jsonpError) {
+      await sendViaGoogleScriptGet(url, data);
+    }
   }
 
   async function sendToTelegram(data) {
