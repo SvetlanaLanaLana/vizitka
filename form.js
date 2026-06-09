@@ -96,30 +96,34 @@
       );
     }
 
-    const fetchOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-    };
+    let response;
 
-    if (cfg.useGoogleScript) {
-      fetchOptions.headers = { 'Content-Type': 'text/plain;charset=utf-8' };
-    } else {
-      fetchOptions.headers = { 'Content-Type': 'application/json' };
+    try {
+      if (cfg.useGoogleScript) {
+        // GET надёжнее POST для Google Script с GitHub Pages (нет CORS-ошибки)
+        const payload = encodeURIComponent(JSON.stringify(data));
+        const url = sendUrl + (sendUrl.includes('?') ? '&' : '?') + 'payload=' + payload;
+        response = await fetch(url, { method: 'GET', redirect: 'follow' });
+      } else {
+        response = await fetch(sendUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+      }
+    } catch (err) {
+      throw new Error(
+        'Не удалось связаться с сервером. Загрузите form.js и form-config.js на GitHub и проверьте URL Google Script (должен заканчиваться на /exec).'
+      );
     }
-
-    const response = await fetch(sendUrl, fetchOptions);
 
     let result = {};
     try {
-      result = await response.json();
+      const text = await response.text();
+      result = JSON.parse(text);
     } catch (e) {
-      if (cfg.isGitHubPages) {
-        throw new Error(
-          'API не ответил. Проверьте formApiUrl в form-config.js (см. НАСТРОЙКА-ФОРМЫ.md).'
-        );
-      }
       throw new Error(
-        'Сервер не ответил. Нужен send-telegram.php (PHP) или API для GitHub Pages (НАСТРОЙКА-ФОРМЫ.md).'
+        'Сервер вернул некорректный ответ. Проверьте, что Google Script развёрнут с доступом «Все».'
       );
     }
 
