@@ -115,7 +115,8 @@ if (empty($result['ok'])) {
     $apiError = $result['description'] ?? 'Неизвестная ошибка Telegram';
 
     if (stripos($apiError, "can't initiate conversation") !== false) {
-        $apiError = 'Сначала напишите боту @managerfilm_bot команду /start в Telegram, затем отправьте заявку снова.';
+        $botName = $config['botUsername'] ?? 'bot';
+        $apiError = "Сначала напишите боту @{$botName} команду /start в Telegram, затем отправьте заявку снова.";
     }
 
     http_response_code(400);
