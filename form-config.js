@@ -4,21 +4,23 @@
   var isVercel = /\.vercel\.app$/i.test(host);
   var isLocal = host === 'localhost' || host === '127.0.0.1';
 
-  // После деплоя на Vercel вставьте сюда URL вашего API (для GitHub Pages):
-  // Пример: https://vizitka-api.vercel.app/api/send-telegram
-  var vercelApiUrl = '';
+  // ▼▼▼ ВСТАВЬТЕ СЮДА URL после настройки (см. НАСТРОЙКА-ФОРМЫ.md) ▼▼▼
+  // Google Script: https://script.google.com/macros/s/.../exec
+  // Vercel:       https://ваш-проект.vercel.app/api/send-telegram
+  var formApiUrl = '';
 
   var sendUrl = 'send-telegram.php';
 
   if (isVercel || isLocal) {
     sendUrl = '/api/send-telegram';
-  } else if (isGitHubPages && vercelApiUrl) {
-    sendUrl = vercelApiUrl;
+  } else if (isGitHubPages && formApiUrl) {
+    sendUrl = formApiUrl;
   }
 
   window.FORM_CONFIG = {
     sendUrl: sendUrl,
-    vercelApiUrl: vercelApiUrl,
+    formApiUrl: formApiUrl,
     isGitHubPages: isGitHubPages,
+    useGoogleScript: /script\.google\.com/i.test(formApiUrl),
   };
 })();
