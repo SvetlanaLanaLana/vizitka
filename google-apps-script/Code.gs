@@ -14,7 +14,7 @@ function setupSecrets() {
   PropertiesService.getScriptProperties().setProperties({
     BOT_TOKEN: 'ВАШ_ТОКЕН_ОТ_BOTFATHER',
     CHAT_ID: '5232226311',
-    BOT_USERNAME: 'zayavka_sveta_bot',
+    BOT_USERNAME: 'zayavka_vizitka_bot',
   });
 }
 
@@ -31,7 +31,7 @@ function handleRequest_(e) {
     var props = PropertiesService.getScriptProperties();
     var botToken = props.getProperty('BOT_TOKEN');
     var chatId = props.getProperty('CHAT_ID');
-    var botUsername = props.getProperty('BOT_USERNAME') || 'zayavka_sveta_bot';
+    var botUsername = props.getProperty('BOT_USERNAME') || 'zayavka_vizitka_bot';
 
     if (!botToken || !chatId) {
       return jsonResponse_({ ok: false, error: 'Сначала запустите setupSecrets() в редакторе скрипта' }, 500);

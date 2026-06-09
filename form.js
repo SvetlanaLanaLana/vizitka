@@ -83,7 +83,7 @@
   async function sendToTelegram(data) {
     if (isLocalFile()) {
       throw new Error(
-        'Сайт открыт с компьютера (file://). Загрузите сайт на хостинг или откройте через локальный сервер — иначе заявка не отправится.'
+        'Сайт открыт с компьютера (file://). Загрузите сайт на хостинг — иначе заявка не отправится.'
       );
     }
 
@@ -92,7 +92,7 @@
 
     if (cfg.isGitHubPages && !cfg.formApiUrl) {
       throw new Error(
-        'На GitHub Pages PHP не работает. Настройте API по инструкции НАСТРОЙКА-ФОРМЫ.md и вставьте URL в form-config.js → formApiUrl.'
+        'Для отправки в Telegram нужен бесплатный API. Откройте НАСТРОЙКА-ФОРМЫ.md → Google Script (5 мин) → вставьте URL в form-config.js → formApiUrl.'
       );
     }
 
@@ -115,11 +115,11 @@
     } catch (e) {
       if (cfg.isGitHubPages) {
         throw new Error(
-          'Сервер API не ответил. Проверьте formApiUrl в form-config.js (см. НАСТРОЙКА-ФОРМЫ.md).'
+          'API не ответил. Проверьте formApiUrl в form-config.js (см. НАСТРОЙКА-ФОРМЫ.md).'
         );
       }
       throw new Error(
-        'Сервер не ответил. Для PHP-хостинга нужен send-telegram.php; для GitHub Pages — API на Vercel (см. ИНСТРУКЦИЯ-БОТ.md).'
+        'Сервер не ответил. Нужен send-telegram.php (PHP) или API для GitHub Pages (НАСТРОЙКА-ФОРМЫ.md).'
       );
     }
 
