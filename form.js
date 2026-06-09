@@ -16,7 +16,10 @@
   const errorBlock = document.getElementById('form-error');
   const formBody = document.getElementById('form-body');
 
-  const SEND_URL = 'send-telegram.php';
+  function getSendUrl() {
+    const cfg = window.FORM_CONFIG || {};
+    return cfg.sendUrl || 'send-telegram.php';
+  }
 
   function openModal(service) {
     form.reset();
@@ -80,11 +83,20 @@
   async function sendToTelegram(data) {
     if (isLocalFile()) {
       throw new Error(
-        'Сайт открыт с компьютера (file://). Загрузите папку на хостинг с PHP или откройте через локальный сервер — иначе заявка не отправится.'
+        'Сайт открыт с компьютера (file://). Загрузите сайт на хостинг или откройте через локальный сервер — иначе заявка не отправится.'
       );
     }
 
-    const response = await fetch(SEND_URL, {
+    const cfg = window.FORM_CONFIG || {};
+    const sendUrl = getSendUrl();
+
+    if (cfg.isGitHubPages && !cfg.vercelApiUrl) {
+      throw new Error(
+        'На GitHub Pages PHP не работает. Разверните API на Vercel (см. ИНСТРУКЦИЯ-БОТ.md) и укажите URL в form-config.js.'
+      );
+    }
+
+    const response = await fetch(sendUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -94,7 +106,14 @@
     try {
       result = await response.json();
     } catch (e) {
-      throw new Error('Сервер не ответил. Убедитесь, что на хостинге включён PHP и файл send-telegram.php загружен.');
+      if (cfg.isGitHubPages) {
+        throw new Error(
+          'Сервер API не ответил. Проверьте URL в form-config.js и переменные TELEGRAM_* на Vercel.'
+        );
+      }
+      throw new Error(
+        'Сервер не ответил. Для PHP-хостинга нужен send-telegram.php; для GitHub Pages — API на Vercel (см. ИНСТРУКЦИЯ-БОТ.md).'
+      );
     }
 
     if (!response.ok || !result.ok) {
