@@ -80,6 +80,58 @@
     return window.location.protocol === 'file:';
   }
 
+  function sendViaGoogleScriptForm(url, data) {
+    return new Promise((resolve, reject) => {
+      const frameName = 'gsFormFrame';
+      let frame = document.getElementById(frameName);
+
+      if (!frame) {
+        frame = document.createElement('iframe');
+        frame.id = frameName;
+        frame.name = frameName;
+        frame.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
+        document.body.appendChild(frame);
+      }
+
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = url;
+      tempForm.target = frameName;
+      tempForm.style.display = 'none';
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'payload';
+      input.value = JSON.stringify(data);
+      tempForm.appendChild(input);
+
+      let finished = false;
+      const done = (ok, message) => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timer);
+        tempForm.remove();
+        if (ok) resolve();
+        else reject(new Error(message || 'Не удалось отправить заявку.'));
+      };
+
+      const timer = setTimeout(() => done(true), 3500);
+
+      frame.onload = () => {
+        try {
+          const text = frame.contentWindow.document.body.innerText || '';
+          const result = JSON.parse(text);
+          done(result.ok, result.error);
+        } catch (e) {
+          done(true);
+        }
+      };
+
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+    });
+  }
+
   async function sendToTelegram(data) {
     if (isLocalFile()) {
       throw new Error(
@@ -96,35 +148,27 @@
       );
     }
 
-    let response;
+    if (cfg.useGoogleScript) {
+      await sendViaGoogleScriptForm(sendUrl, data);
+      return;
+    }
 
+    let response;
     try {
-      if (cfg.useGoogleScript) {
-        // GET надёжнее POST для Google Script с GitHub Pages (нет CORS-ошибки)
-        const payload = encodeURIComponent(JSON.stringify(data));
-        const url = sendUrl + (sendUrl.includes('?') ? '&' : '?') + 'payload=' + payload;
-        response = await fetch(url, { method: 'GET', redirect: 'follow' });
-      } else {
-        response = await fetch(sendUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-      }
+      response = await fetch(sendUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
     } catch (err) {
-      throw new Error(
-        'Не удалось связаться с сервером. Загрузите form.js и form-config.js на GitHub и проверьте URL Google Script (должен заканчиваться на /exec).'
-      );
+      throw new Error('Не удалось связаться с сервером. Проверьте интернет и попробуйте снова.');
     }
 
     let result = {};
     try {
-      const text = await response.text();
-      result = JSON.parse(text);
+      result = await response.json();
     } catch (e) {
-      throw new Error(
-        'Сервер вернул некорректный ответ. Проверьте, что Google Script развёрнут с доступом «Все».'
-      );
+      throw new Error('Сервер вернул некорректный ответ.');
     }
 
     if (!response.ok || !result.ok) {
