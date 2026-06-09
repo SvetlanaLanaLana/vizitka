@@ -115,15 +115,38 @@
         else reject(new Error(message || 'Не удалось отправить заявку.'));
       };
 
-      const timer = setTimeout(() => done(true), 3500);
+      const timer = setTimeout(() => {
+        done(
+          false,
+          'Сервер не ответил. Переразверните Google Script и обновите URL в form-config.js.'
+        );
+      }, 10000);
 
       frame.onload = () => {
+        let text = '';
         try {
-          const text = frame.contentWindow.document.body.innerText || '';
-          const result = JSON.parse(text);
-          done(result.ok, result.error);
+          text = frame.contentWindow.document.body.innerText || '';
         } catch (e) {
-          done(true);
+          done(
+            false,
+            'Не удалось проверить ответ. Переразверните Google Script и обновите URL.'
+          );
+          return;
+        }
+
+        if (/не обнаружен|not found|Страница не найдена/i.test(text)) {
+          done(
+            false,
+            'Google Script не найден. Создайте новое развертывание и вставьте новый URL в form-config.js.'
+          );
+          return;
+        }
+
+        try {
+          const result = JSON.parse(text);
+          done(result.ok, result.error || 'Не удалось отправить заявку в Telegram.');
+        } catch (e) {
+          done(false, 'Сервер вернул некорректный ответ. Проверьте Google Script.');
         }
       };
 
