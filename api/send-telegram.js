@@ -59,7 +59,7 @@ module.exports = async function handler(req, res) {
 
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  const botUsername = process.env.TELEGRAM_BOT_USERNAME || 'zayavka_vizitka_bot';
+  const botUsername = process.env.TELEGRAM_BOT_USERNAME || 'zayavka_sveta_bot';
 
   if (!botToken || !chatId) {
     return res.status(500).json({
