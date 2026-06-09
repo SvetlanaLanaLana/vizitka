@@ -657,13 +657,14 @@
           </label>
 
           <fieldset class="form-field form-field--radio">
-            <legend class="form-field__label">Как с вами связаться *</legend>
-            <div class="radio-group">
-              <label class="radio-label">
+            <legend class="form-field__label">Способ связи *</legend>
+            <p class="form-field__hint">Укажите телефон <strong>или</strong> email — одно поле на выбор</p>
+            <div class="contact-toggle" role="radiogroup" aria-label="Выбор способа связи">
+              <label class="contact-toggle__btn">
                 <input type="radio" name="contact_type" value="phone" checked>
                 <span>Телефон</span>
               </label>
-              <label class="radio-label">
+              <label class="contact-toggle__btn">
                 <input type="radio" name="contact_type" value="email">
                 <span>Email</span>
               </label>
@@ -671,13 +672,13 @@
           </fieldset>
 
           <label class="form-field" id="phone-group">
-            <span class="form-field__label">Телефон *</span>
-            <input type="tel" id="request-phone" name="phone" class="form-field__input" placeholder="+7 (999) 123-45-67">
+            <span class="form-field__label">Номер телефона *</span>
+            <input type="tel" id="request-phone" name="phone" class="form-field__input" placeholder="+7 (999) 123-45-67" autocomplete="tel">
           </label>
 
           <label class="form-field" id="email-group" hidden>
-            <span class="form-field__label">Email *</span>
-            <input type="email" id="request-email" name="email" class="form-field__input" placeholder="example@mail.ru">
+            <span class="form-field__label">Адрес email *</span>
+            <input type="email" id="request-email" name="email" class="form-field__input" placeholder="example@mail.ru" autocomplete="email">
           </label>
 
           <label class="form-field">

@@ -135,21 +135,45 @@
       return;
     }
 
-    if (data.contact_type === 'phone' && !data.phone?.trim()) {
-      showError('Укажите номер телефона.');
-      return;
+    const isPhone = data.contact_type === 'phone';
+    const phone = (data.phone || '').trim();
+    const email = (data.email || '').trim();
+
+    if (isPhone) {
+      if (!phone) {
+        showError('Укажите номер телефона.');
+        return;
+      }
+      if (phone.replace(/\D/g, '').length < 10) {
+        showError('Проверьте номер телефона — должно быть не менее 10 цифр.');
+        return;
+      }
+    } else {
+      if (!email) {
+        showError('Укажите email.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Проверьте формат email, например: name@mail.ru');
+        return;
+      }
     }
 
-    if (data.contact_type === 'email' && !data.email?.trim()) {
-      showError('Укажите email.');
-      return;
-    }
+    const payload = {
+      name: (data.name || '').trim(),
+      contact_type: data.contact_type,
+      phone: isPhone ? phone : '',
+      email: isPhone ? '' : email,
+      service: (data.service || '').trim(),
+      message: (data.message || '').trim(),
+      consent: data.consent,
+    };
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
 
     try {
-      await sendToTelegram(data);
+      await sendToTelegram(payload);
       showSuccess();
     } catch (err) {
       showError(err.message || 'Не удалось отправить заявку. Попробуйте позже.');

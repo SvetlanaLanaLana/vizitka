@@ -1669,24 +1669,60 @@ img {
   min-height: 80px;
 }
 
-.radio-group {
-  display: flex;
-  gap: 20px;
+.form-field__hint {
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
-.radio-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
+.form-field__hint strong {
   color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.contact-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+
+.contact-toggle__btn {
+  position: relative;
   cursor: pointer;
 }
 
-.radio-label input {
-  accent-color: var(--color-accent);
-  width: 16px;
-  height: 16px;
+.contact-toggle__btn input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.contact-toggle__btn span {
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-radius: 4px;
+  transition: all var(--transition);
+}
+
+.contact-toggle__btn input:checked + span {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  box-shadow: 0 1px 4px rgba(46, 42, 112, 0.08);
+}
+
+.contact-toggle__btn input:focus-visible + span {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
 }
 
 .form-checkbox {
