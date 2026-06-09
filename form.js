@@ -80,78 +80,47 @@
     return window.location.protocol === 'file:';
   }
 
-  function sendViaGoogleScriptForm(url, data) {
+  function sendViaGoogleScript(url, data) {
     return new Promise((resolve, reject) => {
-      const frameName = 'gsFormFrame';
-      let frame = document.getElementById(frameName);
+      const callbackName = 'gsCb_' + Date.now();
+      const params = new URLSearchParams();
+      params.set('name', data.name || '');
+      params.set('contact_type', data.contact_type || 'phone');
+      params.set('phone', data.phone || '');
+      params.set('email', data.email || '');
+      params.set('service', data.service || '');
+      params.set('message', data.message || '');
+      params.set('consent', data.consent ? 'true' : 'false');
+      params.set('callback', callbackName);
 
-      if (!frame) {
-        frame = document.createElement('iframe');
-        frame.id = frameName;
-        frame.name = frameName;
-        frame.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
-        document.body.appendChild(frame);
+      const script = document.createElement('script');
+      const timer = setTimeout(() => {
+        cleanup();
+        reject(new Error('Сервер не ответил. Обновите Google Script и form.js на GitHub.'));
+      }, 15000);
+
+      function cleanup() {
+        clearTimeout(timer);
+        delete window[callbackName];
+        script.remove();
       }
 
-      const tempForm = document.createElement('form');
-      tempForm.method = 'POST';
-      tempForm.action = url;
-      tempForm.target = frameName;
-      tempForm.style.display = 'none';
-
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'payload';
-      input.value = JSON.stringify(data);
-      tempForm.appendChild(input);
-
-      let finished = false;
-      const done = (ok, message) => {
-        if (finished) return;
-        finished = true;
-        clearTimeout(timer);
-        tempForm.remove();
-        if (ok) resolve();
-        else reject(new Error(message || 'Не удалось отправить заявку.'));
-      };
-
-      const timer = setTimeout(() => {
-        done(
-          false,
-          'Сервер не ответил. Переразверните Google Script и обновите URL в form-config.js.'
-        );
-      }, 10000);
-
-      frame.onload = () => {
-        let text = '';
-        try {
-          text = frame.contentWindow.document.body.innerText || '';
-        } catch (e) {
-          done(
-            false,
-            'Не удалось проверить ответ. Переразверните Google Script и обновите URL.'
-          );
+      window[callbackName] = (result) => {
+        cleanup();
+        if (result && result.ok) {
+          resolve();
           return;
         }
-
-        if (/не обнаружен|not found|Страница не найдена/i.test(text)) {
-          done(
-            false,
-            'Google Script не найден. Создайте новое развертывание и вставьте новый URL в form-config.js.'
-          );
-          return;
-        }
-
-        try {
-          const result = JSON.parse(text);
-          done(result.ok, result.error || 'Не удалось отправить заявку в Telegram.');
-        } catch (e) {
-          done(false, 'Сервер вернул некорректный ответ. Проверьте Google Script.');
-        }
+        reject(new Error((result && result.error) || 'Не удалось отправить заявку в Telegram.'));
       };
 
-      document.body.appendChild(tempForm);
-      tempForm.submit();
+      script.onerror = () => {
+        cleanup();
+        reject(new Error('Ошибка связи с Google Script. Проверьте URL в form-config.js.'));
+      };
+
+      script.src = url + (url.includes('?') ? '&' : '?') + params.toString();
+      document.body.appendChild(script);
     });
   }
 
@@ -172,7 +141,7 @@
     }
 
     if (cfg.useGoogleScript) {
-      await sendViaGoogleScriptForm(sendUrl, data);
+      await sendViaGoogleScript(sendUrl, data);
       return;
     }
 

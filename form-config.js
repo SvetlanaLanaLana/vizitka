@@ -7,7 +7,7 @@
   // ▼▼▼ ОБЯЗАТЕЛЬНО для GitHub Pages — URL API (см. НАСТРОЙКА-ФОРМЫ.md) ▼▼▼
   // Google Script: https://script.google.com/macros/s/.../exec
   // Vercel:       https://ваш-проект.vercel.app/api/send-telegram
-  var formApiUrl = 'https://script.google.com/macros/s/AKfycbxnfOO6-6TBVshuMyTW-9uk7mNrfLtK5alMtxE8WOsWjPpWezaRgGVWP656ZnItrTTD/exec';
+  var formApiUrl = 'https://script.google.com/macros/s/AKfycbyogufO51QHGl3vvy4ZzNt5ifcjoqRqnjPQTslFlqrgIF25N14tUBykzwQi5RdJg3lG/exec';
 
   var sendUrl = 'send-telegram.php';
 

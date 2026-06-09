@@ -1,32 +1,52 @@
-/**
- * Бесплатный API для формы на GitHub Pages.
- * 1. Откройте https://script.google.com → Новый проект
- * 2. Вставьте этот код
- * 3. Запустите setupSecrets (один раз) — подставьте токен и chat_id
- * 4. Развернуть → Новое развертывание → Веб-приложение
- *    - Запуск от имени: Я
- *    - Доступ: Все
- * 5. Скопируйте URL и вставьте в form-config.js → formApiUrl
- */
-
 function setupSecrets() {
-  // Замените значения на свои перед первым запуском:
   PropertiesService.getScriptProperties().setProperties({
-    BOT_TOKEN: 'ВАШ_ТОКЕН_ОТ_BOTFATHER',
+    BOT_TOKEN: '8568379396:AAE8zWrKYCrCd2cX7lt3Q3nvAjAmiIm1pic',
     CHAT_ID: '5232226311',
     BOT_USERNAME: 'zayavka_vizitka_bot',
   });
 }
 
 function doPost(e) {
-  return handleRequest_(e);
+  return respond_(processRequest_(e), e);
 }
 
 function doGet(e) {
-  return handleRequest_(e);
+  return respond_(processRequest_(e), e);
 }
 
-function handleRequest_(e) {
+function parseData_(e) {
+  var data = {};
+
+  if (e.postData && e.postData.contents) {
+    try {
+      data = JSON.parse(e.postData.contents);
+      return data;
+    } catch (err) {}
+  }
+
+  if (e.parameter && e.parameter.payload) {
+    try {
+      data = JSON.parse(e.parameter.payload);
+      return data;
+    } catch (err) {}
+  }
+
+  if (e.parameter) {
+    data = {
+      name: e.parameter.name || '',
+      contact_type: e.parameter.contact_type || 'phone',
+      phone: e.parameter.phone || '',
+      email: e.parameter.email || '',
+      service: e.parameter.service || '',
+      message: e.parameter.message || '',
+      consent: e.parameter.consent,
+    };
+  }
+
+  return data;
+}
+
+function processRequest_(e) {
   try {
     var props = PropertiesService.getScriptProperties();
     var botToken = props.getProperty('BOT_TOKEN');
@@ -34,19 +54,13 @@ function handleRequest_(e) {
     var botUsername = props.getProperty('BOT_USERNAME') || 'zayavka_vizitka_bot';
 
     if (!botToken || !chatId) {
-      return jsonResponse_({ ok: false, error: 'Сначала запустите setupSecrets() в редакторе скрипта' }, 500);
+      return { ok: false, error: 'Сначала запустите setupSecrets() в редакторе скрипта' };
     }
 
-    var data = {};
-    if (e.postData && e.postData.contents) {
-      data = JSON.parse(e.postData.contents);
-    } else if (e.parameter && e.parameter.payload) {
-      data = JSON.parse(e.parameter.payload);
-    }
-
+    var data = parseData_(e);
     var error = validate_(data);
     if (error) {
-      return jsonResponse_({ ok: false, error: error }, 400);
+      return { ok: false, error: error };
     }
 
     var text = buildMessage_(data);
@@ -67,12 +81,12 @@ function handleRequest_(e) {
           botUsername +
           ' команду /start в Telegram, затем отправьте заявку снова.';
       }
-      return jsonResponse_({ ok: false, error: apiError }, 400);
+      return { ok: false, error: apiError };
     }
 
-    return jsonResponse_({ ok: true }, 200);
+    return { ok: true };
   } catch (err) {
-    return jsonResponse_({ ok: false, error: String(err.message || err) }, 500);
+    return { ok: false, error: String(err.message || err) };
   }
 }
 
@@ -81,7 +95,11 @@ function validate_(data) {
   var contactType = data.contact_type || 'phone';
   var phone = String(data.phone || '').trim();
   var email = String(data.email || '').trim();
-  var consent = Boolean(data.consent);
+  var consent =
+    data.consent === true ||
+    data.consent === 'true' ||
+    data.consent === '1' ||
+    data.consent === 'yes';
 
   if (!name) return 'Укажите имя';
   if (!consent) return 'Необходимо согласие на обработку персональных данных';
@@ -117,8 +135,11 @@ function buildMessage_(data) {
   return lines.join('\n');
 }
 
-function jsonResponse_(body, status) {
-  var output = ContentService.createTextOutput(JSON.stringify(body));
-  output.setMimeType(ContentService.MimeType.JSON);
-  return output;
+function respond_(body, e) {
+  var json = JSON.stringify(body);
+  if (e && e.parameter && e.parameter.callback) {
+    return ContentService.createTextOutput(e.parameter.callback + '(' + json + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(json).setMimeType(ContentService.MimeType.JSON);
 }
